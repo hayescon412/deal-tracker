@@ -1,16 +1,84 @@
-TN BRRRR Deal Analyzer
-TN BRRRR Deal Analyzer
-Enter your criteria for automatic BRRRR evaluation.
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TN BRRRR Deal Analyzer</title>
+<meta name="description" content="Analyze a buy, rehab, rent, refinance, repeat (BRRRR) real estate deal and compare FHA 203k and conventional rehab loans.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="container">
+  <header>
+    <p class="eyebrow">Real estate · Tennessee</p>
+    <h1>BRRRR Deal Analyzer</h1>
+    <p class="dek">Buy, rehab, rent, refinance, repeat. Enter one property and see the all-in cost, equity, refinance cash-out, monthly cash flow, and how an FHA 203k loan compares with a conventional rehab loan.</p>
+  </header>
 
-County 
-Price Range (min) 
+  <form id="dealForm" class="form-card" novalidate>
+    <fieldset>
+      <legend>Property</legend>
+      <div class="grid">
+        <label>County
+          <input id="county" type="text" value="Lawrence">
+        </label>
+        <label>Purchase price ($)
+          <input id="price" type="number" min="0" step="1000" value="110000">
+        </label>
+        <label>Square feet
+          <input id="sqft" type="number" min="0" step="50" value="1500">
+        </label>
+        <label>After-repair value, ARV ($)
+          <input id="arv" type="number" min="0" step="1000" value="225000">
+        </label>
+        <label>Expected monthly rent ($)
+          <input id="rent" type="number" min="0" step="25" value="1600">
+        </label>
+      </div>
+    </fieldset>
 
-Price Range (max) 
+    <fieldset>
+      <legend>Rehab &amp; costs</legend>
+      <div class="grid">
+        <label>Rehab level
+          <select id="rehabLevel">
+            <option value="light">Light ($20/sq ft)</option>
+            <option value="medium" selected>Medium ($30/sq ft)</option>
+            <option value="full">Full gut ($40/sq ft)</option>
+          </select>
+        </label>
+        <label>Closing &amp; holding costs ($)
+          <input id="closing" type="number" min="0" step="500" value="6000">
+        </label>
+        <label>Monthly taxes, insurance &amp; upkeep ($)
+          <input id="opex" type="number" min="0" step="25" value="400">
+        </label>
+      </div>
+    </fieldset>
 
-Goal BRRRR Flip Cash-Flow Rental
+    <fieldset>
+      <legend>Financing</legend>
+      <div class="grid">
+        <label>Interest rate (%)
+          <input id="rate" type="number" min="0" step="0.125" value="6.5">
+        </label>
+        <label>Refinance loan-to-value (%)
+          <input id="ltv" type="number" min="0" max="100" step="1" value="75">
+        </label>
+      </div>
+    </fieldset>
 
-Loan Type Compare 203k vs Conventional Rehab FHA 203k Only Conventional Rehab Only
+    <p id="formError" class="error" role="alert" hidden></p>
+    <button type="submit">Analyze deal</button>
+  </form>
 
-Rehab Level Light Medium Full Gut
+  <section id="results" aria-live="polite"></section>
 
-Analyze Deals
+  <footer>
+    <p>Rehab costs per square foot and down payments (3.5% FHA 203k, 10% conventional) are rough planning assumptions. Get real contractor bids and lender quotes before buying. Not financial advice.</p>
+    <p>Built by <a href="https://github.com/hayescon412">Hayes McNutt</a>.</p>
+  </footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
